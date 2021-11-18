@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#-(h%^q+b5-aj)vgk4$5d@o_e*3zap5f&_pcr7rz!uh_b(nq%@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
     'supply',
     'widget_tweaks',
 ]
@@ -76,11 +77,16 @@ WSGI_APPLICATION = 'smart.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'smart',
+        'USER': 'postgres',
+        'PASSWORD': 'tech.kita01',
+        'HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
+
 
 
 # Password validation

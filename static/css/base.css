@@ -1,9 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
-@font-face {
-    font-family: AstroSpace;
-    src: url(/fonts/AstroSpace.ttf);
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -17,6 +12,14 @@ header {
 
 .main-nav {
     height: 90px;
+}
+
+.input {
+    height: 20px;
+}
+
+.serch {
+    max-height: 50px;
 }
 
 .logo {
@@ -118,9 +121,15 @@ li a.contact:hover {
     }
 }
 
+.container-sm {
+    margin-right: 15px;
+    margin-left: 15px;
+    max-width: 1100px;
+}
+
 .categories {
-    position: relative;
     display: flex;
+    padding: 2px;
 }
 
 #cat-list li {
@@ -129,8 +138,8 @@ li a.contact:hover {
     padding: 10px;
     background-color: #4d5975;
     padding: 9px 20px;
+    margin-bottom: 3px;
     border-radius: 50px;
-    transition: all 0.3s linear 0s;
     color: #fff;
 }
 
@@ -138,4 +147,117 @@ li a.contact:hover {
     background-color: #a1abac;
     color: white;
     border-bottom: none;
+}
+
+.search-filter {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0px 0px 5px;
+    padding: 4px;
+    /* border-right: solid #222831 1px; */
+}
+
+.container-inner {
+    display: flex;
+}
+
+.col-md-9 h3 {
+    color: #fff;
+}
+
+.col-md-9 {
+    color: #fff;
+}
+
+.btn-trade {
+    background-color: #4d5975;
+    margin-bottom: 10px;
+    padding: 9px 7px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn-trade :hover {
+    background-color: #6b717c;
+    box-shadow: #a1abac;
+}
+
+.btn-trade a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.btn-trade a:hover {
+    text-decoration: none;
+    color: #eaedf3;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card {
+    max-width: 150px;
+    left: 3px;
+    top: 5px;
+    margin-right: 3px;
+}
+
+.card :hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+}
+
+.card h1 {
+    font-size: 20px;
+    text-align: center;
+    color: #1c3455;
+}
+
+.card img {}
+
+.price {
+    color: rgb(99, 98, 98);
+    font-size: 15px;
+    text-align: center;
+}
+
+.category {
+    font-size: 14px;
+    text-align: center;
+    color: #1c3455;
+}
+
+.card button {
+    border: none;
+    outline: 0;
+    padding: 6px;
+    color: white;
+    background-color: #1c3455;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 15px;
+    bottom: 0;
+}
+
+.card button:hover {
+    opacity: 0.7;
+}
+
+.card-cat {
+    background-color: #6b717c;
+    height: 50px;
+    width: 50px;
+}
+
+.di-cat {
+    display: flex;
+    padding: 7px 5px;
+}
+
+.di-cut {
+    text-decoration: none;
 }
