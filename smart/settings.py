@@ -40,7 +40,21 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'supply',
     'widget_tweaks',
+    "phonenumber_field",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    'orders',
+    'UserInformation',
+    'products',
+    # 'mapbox_location_field',
 ]
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+MAPBOX_KEY ="pk.eyJ1IjoibWFyaWV0YTIyIiwiYSI6ImNrdzUwN3cwYTBidHQyb252aDBvZXM0ZjIifQ.eiMDytKjC3JTO1cZKj24qQ"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -113,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
@@ -137,3 +151,4 @@ MEDIA_ROOT = str(BASE_DIR.joinpath('media'))
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CART_SESSION_ID = 'cart'

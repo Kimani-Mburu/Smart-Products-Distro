@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect("home")
+        return redirect("supply:home")
 
     form = LoginForm()
     if request.method == 'POST':
@@ -35,7 +35,7 @@ def logout_view(request):
 
 def signup(request):
     if request.user.is_authenticated:
-        return redirect("home")
+        return redirect("supply:home")
 
     form = SignUpForm()
     if request.method == 'POST':

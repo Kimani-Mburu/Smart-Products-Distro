@@ -11,7 +11,12 @@ urlpatterns = [
      path('admin/', admin.site.urls),
      path("", include("supply.urls", namespace="supply")),
      path("accounts/", include('accounts.urls')),
+     path('user-profiles',include("UserInformation.urls", namespace="user-information")),
+     path('products/', include('products.urls', namespace= 'products')),
+     path('orders/', include('orders.urls', namespace='orders'))
 ]
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL,
-                      view=cache_control(no_cache=True, must_revalidate=True)(serve))
+    urlpatterns += static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    
+    
