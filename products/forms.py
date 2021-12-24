@@ -6,5 +6,5 @@ from .models import Product
 class ProductsAdd(forms.ModelForm):
     class Meta:
        model = Product
-       exclude = ('is_featured','created_on','farmer')
+       exclude = ('product_is_featured','product_created_on','farmer_login_id')
        

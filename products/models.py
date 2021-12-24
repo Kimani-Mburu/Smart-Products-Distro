@@ -36,7 +36,7 @@ class Category(models.Model):
     
 # Products units
 
-class Units(models.Model):
+class Unit(models.Model):
     unit_name = models.CharField(max_length=20)
     unit_desc = models.CharField(max_length=50)
     
@@ -48,24 +48,24 @@ class Units(models.Model):
 # product information
 
 class Product(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    category = models.ForeignKey(Category, on_delete=CASCADE, verbose_name='Category')
-    images = models.ImageField(upload_to='images/%Y/%m/%d',default=None, verbose_name='Thumbnail')
-    other_image = models.ImageField(upload_to='images/%Y/%m/%d',blank=True, null=True)
-    other_image1 = models.ImageField(upload_to='images/%Y/%m/%d',blank=True, null=True)
-    unit = models.ForeignKey(Units, on_delete=CASCADE)
-    unit_price = models.FloatField()
-    availability_wef_date = models.DateTimeField(default=datetime.now, verbose_name='Available from')
-    availability_wet_date = models.DateTimeField(blank=True, null=True, verbose_name='Available until')
-    location = models.CharField(max_length=30, blank=True, null=True)
-    created_on = models.DateTimeField(default=datetime.now)
-    is_featured = models.BooleanField(default=False)
-    farmer = models.ForeignKey(Farmer, on_delete=CASCADE)
+    product_name = models.CharField(max_length=100)
+    product_description = models.TextField()
+    product_category = models.ForeignKey(Category, on_delete=CASCADE, verbose_name='Category')
+    product_images = models.ImageField(upload_to='images/%Y/%m/%d',default=None, verbose_name='Thumbnail')
+    product_other_image = models.ImageField(upload_to='images/%Y/%m/%d',blank=True, null=True)
+    product_other_image1 = models.ImageField(upload_to='images/%Y/%m/%d',blank=True, null=True)
+    product_unit = models.ForeignKey(Unit, on_delete=CASCADE)
+    product_unit_price = models.FloatField()
+    product_availability_wef_date = models.DateTimeField(default=datetime.now, verbose_name='Available from')
+    product_availability_wet_date = models.DateTimeField(blank=True, null=True, verbose_name='Available until')
+    product_location = models.CharField(max_length=30, blank=True, null=True)
+    product_created_on = models.DateTimeField(default=datetime.now)
+    product_is_featured = models.BooleanField(default=False)
+    product_farmer_login_id = models.ForeignKey(Farmer, on_delete=CASCADE)
     
     
     def __str__(self):
-        return self.name
+        return self.product_name
     
     def get_absolute_url(self):
         return reverse("supply:product", args=[self.pk])

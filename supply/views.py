@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView, View
 from django.contrib import messages
 
 from orders.forms import DeliverAddress
+from orders.models import OtherCharge
 from products.models import Category, Product
 
 from django.urls import reverse_lazy
@@ -16,7 +17,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 from .order import Cart
-from .forms import CartAddProductForm, OtherChargesForm
+from .forms import CartAddProductForm
 
 from django.contrib import messages
 from django.db.models import Q
@@ -28,11 +29,11 @@ app_name = 'supply'
 # Default Home List View
 class HomeView(ListView):
     model = Product
-    queryset = Product.objects.order_by('-created_on')
+    queryset = Product.objects.order_by('-product_created_on')
     template_name = "supply/index.html"
     
     def get_queryset(self):
-        return Product.objects.order_by('-created_on')
+        return Product.objects.order_by('-product_created_on')
     
     def get_context_data(self, **kwargs):
         
@@ -40,12 +41,12 @@ class HomeView(ListView):
         
         item_count = len(cart)
         context = super().get_context_data(**kwargs)
-        context["featured_product"] = self.get_queryset().filter(is_featured=True)[:5]
-        context['fruits_product_list'] = self.get_queryset().filter(category__slug='fruits')[:5]
-        context['vegetables_product_list'] = self.get_queryset().filter(category__slug='vegetables')[:5]
-        context['cereals_product_list'] = self.get_queryset().filter(category__slug='cereals')[:5]
-        context['potatoes_product_lforist'] = self.get_queryset().filter(category__slug='potatoes')[:5]
-        context['legumes_product_list'] = self.get_queryset().filter(category__slug='legumes')[:5]
+        context["featured_product"] = self.get_queryset().filter(product_is_featured=True)[:10]
+        context['fruits_product_list'] = self.get_queryset().filter(product_category__slug='fruits')[:5]
+        context['vegetables_product_list'] = self.get_queryset().filter(product_category__slug='vegetables')[:5]
+        context['cereals_product_list'] = self.get_queryset().filter(product_category__slug='cereals')[:5]
+        context['potatoes_product_lforist'] = self.get_queryset().filter(product_category__slug='potatoes')[:5]
+        context['legumes_product_list'] = self.get_queryset().filter(product_category__slug='legumes')[:5]
         context["item_count"] = item_count
         
         return context
@@ -54,7 +55,7 @@ class HomeView(ListView):
 
 class AllCategories(ListView):
     model = Product
-    queryset = Product.objects.order_by('-created_on')
+    queryset = Product.objects.order_by('-product_created_on')
     template_name = "supply/category/all_categories.html"
 # Product Detail view
 class ProductDetailView(DetailView):
@@ -79,7 +80,7 @@ class CategoryList(ListView):
     def get_queryset(self):
         self.category = get_object_or_404(Category, slug=self.kwargs['slug'])
         return Product.objects.filter(
-        category=self.category).order_by('-created_on')
+        product_category=self.category).order_by('-product_created_on')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -114,25 +115,28 @@ def cart_remove(request, product_id):
 
 def cart_detail(request):
     cart = Cart(request)
-    
+    other_charges = get_object_or_404(OtherCharge)
     for item in cart:
         item['update_quantity_form'] = CartAddProductForm
         
         
     if request.method =='POST':
         delivery_address = DeliverAddress(request.POST, prefix='delivery_address')
-        other_charges = OtherChargesForm(request.POST, prefix='other_charges')
-        if delivery_address.is_valid() and other_charges.is_valid():
+
+        if delivery_address.is_valid():
             delivery_address.save()
-            other_charges.save()
             
         else:
             messages.info(request, 'Please correct errors')
     delivery_address = DeliverAddress()
-    other_charges = OtherChargesForm()
+    
     
 
     item_count = cart.item_count()
-    return render(request, 'supply/order.html', {"cart": cart, "item_count": item_count, "delivery_address": delivery_address, "other_charges": other_charges})
+    return render(request, 'supply/order.html', 
+                  {"cart": cart, 
+                   "item_count": item_count,
+                   "delivery_address": delivery_address,
+                   "other_charges":other_charges})
  
 

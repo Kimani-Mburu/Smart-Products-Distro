@@ -48,7 +48,7 @@
                     {% for product in featured_product %}
                     <div class="card-1" style="box-shadow: 5px 5px 5px black;">
                         <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light" data-mdb-ripple-color="light">
-                            <img src="{{ product.images.url }}" class="img-p" />
+                            <img src="{{ product.product_images.url }}" class="img-p" />
                             <a href="#!">
                                 <div class="hover-overlay">
                                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
@@ -57,14 +57,14 @@
                         </div>
                         <div class="card-body" style="background-color: white;">
                             <a href="" class="text-reset">
-                                <h4 class="card-title mb-3 text-decoration-none">{{ product.name }}
+                                <h4 class="card-title mb-3 text-decoration-none">{{ product.product_name }}
                                 </h4>
                             </a>
                             <a href="" class="text-reset">
-                                <h6>{{product.category}}
+                                <h6>{{product.product_category}}
                                 </h6>
                             </a>
-                            <h6 class="mb-3" style="text-align: center;">Ksh {{product.unit_price}} @{{product.unit}}</h6>
+                            <h6 class="mb-3" style="text-align: center;">Ksh {{product.product_unit_price}} @{{product.product_unit}}</h6>
                             <button type="button" class="btn btn-primary btn-sm mr-1"><i class="fas fa-shopping-cart pr-2"></i>Add to cart</button>
                             <button type="button" class="btn btn-dark btn-sm"><i class="fas fa-info-circle pr-2"></i><a href="{{ product.get_absolute_url }}" style="color:white;">Details</a> </button>
 
@@ -84,7 +84,7 @@
                 {% for product in fruits_product_list %}
                 <div class="card-1">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light " data-mdb-ripple-color="light ">
-                        <img src="{{ product.images.url }} " class="img-p " />
+                        <img src="{{ product.product_images.url }} " class="img-p " />
                         <a href="#! ">
                             <div class="hover-overlay ">
                                 <div class="mask " style="background-color: rgba(251, 251, 251, 0.15); "></div>
@@ -93,14 +93,14 @@
                     </div>
                     <div class="card-body ">
                         <a href=" " class="text-reset ">
-                            <h4 class="card-title mb-3 text-decoration-none ">{{ product.name }}
+                            <h4 class="card-title mb-3 text-decoration-none ">{{ product.product_name }}
                             </h4>
                         </a>
                         <a href=" " class="text-reset ">
-                            <h6>{{product.category}}
+                            <h6>{{product.product_category}}
                             </h6>
                         </a>
-                        <h6 class="mb-3 " style="text-align: center;">Ksh {{product.unit_price}} @{{product.unit}}</h6>
+                        <h6 class="mb-3 " style="text-align: center;">Ksh {{product.product_unit_price}} @{{product.product_unit}}</h6>
                         <button type="button " class="btn btn-primary btn-sm mr-1 ">
                             <!-- <i class="fas fa-shopping-cart pr-2 "></i> -->
                             Add to cart</button>
@@ -123,7 +123,7 @@
                 {% for product in legumes_product_list %}
                 <div class="card-1">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light " data-mdb-ripple-color="light ">
-                        <img src="{{ product.images.url }} " class="img-p " />
+                        <img src="{{ product.product_images.url }} " class="img-p " />
                         <a href="#! ">
                             <div class="hover-overlay ">
                                 <div class="mask " style="background-color: rgba(251, 251, 251, 0.15); "></div>
@@ -132,14 +132,14 @@
                     </div>
                     <div class="card-body ">
                         <a href=" " class="text-reset ">
-                            <h4 class="card-title mb-3 text-decoration-none ">{{ product.name }}
+                            <h4 class="card-title mb-3 text-decoration-none ">{{ product.product_name }}
                             </h4>
                         </a>
                         <a href=" " class="text-reset ">
-                            <h6>{{product.category}}
+                            <h6>{{product.product_category}}
                             </h6>
                         </a>
-                        <h6 class="mb-3 " style="text-align: center;">Ksh {{product.unit_price}} @{{product.unit}}</h6>
+                        <h6 class="mb-3 " style="text-align: center;">Ksh {{product.product_unit_price}} @{{product.product_unit}}</h6>
                         <button type="button " class="btn btn-primary btn-sm mr-1 ">
                             <!-- <i class="fas fa-shopping-cart pr-2 "></i> -->
                             Add to cart</button>
@@ -162,7 +162,7 @@
                 {% for product in vegetables_product_list %}
                 <div class="card-1">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light " data-mdb-ripple-color="light ">
-                        <img src="{{ product.images.url }} " class="img-p " />
+                        <img src="{{ product.product_images.url }} " class="img-p " />
                         <a href="#! ">
                             <div class="hover-overlay ">
                                 <div class="mask " style="background-color: rgba(251, 251, 251, 0.15); "></div>
@@ -171,14 +171,14 @@
                     </div>
                     <div class="card-body ">
                         <a href=" " class="text-reset ">
-                            <h4 class="card-title mb-3 text-decoration-none ">{{ product.name }}
+                            <h4 class="card-title mb-3 text-decoration-none ">{{ product.product_name }}
                             </h4>
                         </a>
                         <a href=" " class="text-reset ">
-                            <h6>{{product.category}}
+                            <h6>{{product.product_category}}
                             </h6>
                         </a>
-                        <h6 class="mb-3 " style="text-align: center;">Ksh {{product.unit_price}} @{{product.unit}}</h6>
+                        <h6 class="mb-3 " style="text-align: center;">Ksh {{product.product_unit_price}} @{{product.product_unit}}</h6>
                         <button type="button " class="btn btn-primary btn-sm mr-1 ">
                             <!-- <i class="fas fa-shopping-cart pr-2 "></i> -->
                             Add to cart</button>
@@ -201,7 +201,7 @@
                 {% for product in cereals_product_list %}
                 <div class="card-1">
                     <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light " data-mdb-ripple-color="light ">
-                        <img src="{{ product.images.url }} " class="img-p " />
+                        <img src="{{ product.product_images.url }} " class="img-p " />
                         <a href="#! ">
                             <div class="hover-overlay ">
                                 <div class="mask " style="background-color: rgba(251, 251, 251, 0.15); "></div>
@@ -210,14 +210,14 @@
                     </div>
                     <div class="card-body ">
                         <a href=" " class="text-reset ">
-                            <h4 class="card-title mb-3 text-decoration-none ">{{ product.name }}
+                            <h4 class="card-title mb-3 text-decoration-none ">{{ product.product_name }}
                             </h4>
                         </a>
                         <a href=" " class="text-reset ">
-                            <h6>{{product.category}}
+                            <h6>{{product.product_category}}
                             </h6>
                         </a>
-                        <h6 class="mb-3 " style="text-align: center;">Ksh {{product.unit_price}} @{{product.unit}}</h6>
+                        <h6 class="mb-3 " style="text-align: center;">Ksh {{product.product_unit_price}} @{{product.product_unit}}</h6>
                         <button type="button " class="btn btn-primary btn-sm mr-1 ">
                             <!-- <i class="fas fa-shopping-cart pr-2 "></i> -->
                             Add to cart</button>

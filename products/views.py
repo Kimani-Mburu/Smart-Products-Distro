@@ -10,13 +10,13 @@ app_name = "products"
 def add_product(request):
     user = get_object_or_404(User, id=request.user.id)
     
-    farmer = get_object_or_404(Farmer, user=user)
+    farmer = get_object_or_404(Farmer, farmer_login_id=user)
     
     if request.method == 'POST':
         product_form = ProductsAdd(request.POST, request.FILES)
         if product_form.is_valid():
             product_form = product_form.save(commit=False)
-            product_form.farmer = farmer
+            product_form.farmer_login_id = farmer
             product_form.save()
             messages.info(request,'Product added successfully')
             return redirect('supply:home')

@@ -1,6 +1,10 @@
 from decimal import Decimal
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+
+from orders.models import OtherCharge
 from .models import Product
+import urllib.request as urllib 
 
 class Cart(object):
     def __init__(self, request):
@@ -14,7 +18,7 @@ class Cart(object):
         product_id = str(product.id)
         
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity':0, 'unit_price':str(product.unit_price)}
+            self.cart[product_id] = {'quantity':0, 'unit_price':str(product.product_unit_price)}
         if update_quantity:
             self.cart[product_id]['quantity'] = int(quantity)
         else:
@@ -54,13 +58,15 @@ class Cart(object):
             return (Decimal(item['unit_price']) * item['quantity'])
     
     def get_total_price(self):
-        return sum(Decimal(item['unit_price']) * item['quantity'] for item in self.cart.values())
+        shipping = get_object_or_404(OtherCharge)
+        shipping_cost = shipping.other_charge_rate
+        total = sum(Decimal(item['unit_price']) * item['quantity'] for item in self.cart.values())
+        total_price = int(total) + int(shipping_cost)
+        return total_price
 
     def clear(self):
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
-    def vat(self):
-        pass
         
     def __str__(self) -> str:
         return f"{self.cart}"

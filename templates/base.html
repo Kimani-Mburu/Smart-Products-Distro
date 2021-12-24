@@ -43,6 +43,9 @@
                     <a href="{% url 'supply:cart_detail' %}">My Orders <span class="badge">{{item_count}}</span></a>
                 </li>
                 <li>
+                    <a href="{% url 'UserInformation:profile' %}">My Profile</a>
+                </li>
+                <li>
                     <a href="{% url 'logout' %}" class="contact">logout</a>
                 </li>{% else %}
                 <li> <a href="{% url 'login' %} " class="contact">login</a></li>
@@ -54,9 +57,9 @@
     </header>
     {% comment %} MESSAGES {% endcomment %}
 
-    <div class="messages" id="messages">
+    <div class="messages" style="background-color: green;" id="messages">
         {% if messages %} {% for message in messages %}
-        <div class="alert alert-success alter-dismissable fade show" style="background-color: black;" role="alert">
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
             {{ message }}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>

@@ -1,5 +1,7 @@
 from django.contrib.messages.api import error
 from django.shortcuts import render
+
+from products.models import Product
 from .models import Farmer, Customer
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -17,7 +19,7 @@ from .forms import FarmerCreate, CustomerCreate
 def create_farmer(request):
     user = get_object_or_404(User, id=request.user.id)
     # Check if user has a farmer profile
-    farmer_qs = Farmer.objects.filter(user=user)
+    farmer_qs = Farmer.objects.filter(farmer_login_id=user)
     
     if farmer_qs.exists():
         return redirect ('products:add-product')
@@ -27,7 +29,7 @@ def create_farmer(request):
             
             if form.is_valid:
                 form = form.save(commit=False)
-                form.user = request.user
+                form.farmer_login_id = request.user
                 form.save()
                 
                 # Print success message
@@ -47,7 +49,7 @@ def create_customer(request):
     
     # check if user has a customer account
     
-    customer_qs = Customer.objects.filter(user=user)
+    customer_qs = Customer.objects.filter(customer_login_id=user)
     
     if customer_qs.exists():
         return redirect('orders:checkout')
@@ -58,7 +60,7 @@ def create_customer(request):
             
             if form.is_valid:
                 form = form.save(commit=False)
-                form.user = request.user
+                form.customer_login_id = request.user
                 form.save()
                 
                 # Success Message
@@ -71,3 +73,21 @@ def create_customer(request):
             
         form = CustomerCreate()
         return render(request, 'createcustomer.html',{'form':form})
+    
+    
+def profile(request, user, object):
+    user = get_object_or_404(User, id=request.user.id)
+    
+    
+    object = Product.objects.filter(product_farmer_login_id = user.id)
+    if object.exists:
+        farmer = get_object_or_404(farmer_login_id=user)
+        context = {
+            'user':user,
+            'object':object,
+            'farmer':farmer
+        }
+        return render(request, 'accounts/profile.html', context)
+    
+    else:
+        return redirect('supply:home')
