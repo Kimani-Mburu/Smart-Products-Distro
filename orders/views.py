@@ -32,7 +32,7 @@ def checkout(request):
    
     if len(cart):
         # create an order
-        order = Order.objects.create(order_customer_login_id=user, order_customer_id=customer, order_delivery_address = 'Karatina, Nyeri')
+        order = Order.objects.create(order_customer_login_id=user, order_customer_id=customer, order_delivery_address = 'Ouga, Nyeri')
         order.save()
         
         # get items from cart and add them to order items
@@ -46,24 +46,29 @@ def checkout(request):
                 order_item_total_cost = (int(item['unit_price']) * item['quantity'])
             )
             order_item.save() 
+            
+            
+            
         # Query for order items in an order
         ref_no = order
         order_items = Order_item.objects.filter(order_item_order_id = ref_no)
         for order_item in order_items:
             product_id = order_item.order_item_product_id
             
-        order_item_farmer = Product.objects.filter(product_name = product_id )
+            
+            
+        # send email to customer
         
-        # send email to farmer
+        customer_email =  customer.customer_email
         
         
-        
+        # send email to farmer  
         farmer = product_id.product_farmer_login_id
         email = farmer.farmer_email
         
         
         subject = "New Order Alert"
-        to = ['bcislmr163719@spu.ac.ke']
+        to = [email]
         from_email = EMAIL_HOST_USER
 
         ctx = {
