@@ -1,1 +1,1 @@
-web: gunicorn Smart-Products-Distro.wsgi:application --log-file - --log-level debug
+web: gunicorn smart.wsgi --log-file -
