@@ -1,6 +1,9 @@
 from pathlib import Path
 import os
 import dj_database_url
+import cloudinary
+import cloudinary_storage
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,7 +40,9 @@ INSTALLED_APPS = [
     'UserInformation',
     'products',
     'import_export',
-    # 'mapbox_location_field',
+    # Media Cloudinary
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 
@@ -92,6 +97,18 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+from decouple import config
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUD_NAME', default=""),
+    'API_KEY': config('API_KEY', default=""),
+    'API_SECRET': config('API_SECRET', default=""),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
