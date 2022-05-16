@@ -77,9 +77,9 @@ def checkout(request):
         'order_item':order_item
         }
 
-        message = 'New Order Alert. Please prepare for order delivery within 48 hrs.'
+        # message = 'New Order Alert. Please prepare for order delivery within 48 hrs.'
 
-        EmailMessage(subject, message, to=to, from_email=from_email).send()
+        # EmailMessage(subject, message, to=to, from_email=from_email).send()
 
      
         # OtherCharges for the order
