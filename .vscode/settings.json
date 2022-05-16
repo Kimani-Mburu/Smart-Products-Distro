@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "smart",
+            "username": "postgres",
+            "password": "tech.kita01",
+            "database": "smart"
+        }
+    ]
+}
